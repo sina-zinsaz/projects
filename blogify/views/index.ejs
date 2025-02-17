@@ -1,0 +1,10 @@
+<% layout('layout') %>
+<h1>به Blogify خوش آمدید!</h1>
+<p>آخرین مقالات وبلاگ:</p>
+<ul>
+    <% posts.forEach(post => { %>
+        <li>
+            <a href="/post/<%= post.id %>"><%= post.title %></a>
+        </li>
+    <% }); %>
+</ul>
