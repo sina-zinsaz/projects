@@ -1,35 +1,55 @@
-const express = require("express");
+// const express = require('express');
+// const path = require('path');
+// const engine = require('ejs-mate');
+
+// const app = express();
+
+// app.engine('ejs', engine); // تنظیم ejs-mate به عنوان موتور قالب
+// app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, 'views'));
+
+// app.get('/', (req, res) => {
+//     res.render('index', { title: 'صفحه اصلی' });
+// });
+
+// app.listen(3000, () => {
+//     console.log('Server is running on port 3000');
+// });
+
+const express = require('express');
+const path = require('path');
+
 const app = express();
-const path = require("path");
-const fs = require("fs");
 
-// تنظیمات EJS
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
-// تنظیم فایل‌های استاتیک
-app.use(express.static("public"));
-
-// خواندن مقالات از فایل JSON
-const posts = JSON.parse(fs.readFileSync("./data/posts.json", "utf-8"));
-
-// صفحه اصلی (لیست مقالات)
-app.get("/", (req, res) => {
-    res.render("index", { title: "Blogify - وبلاگ", posts });
-});
-
-// صفحه نمایش مقاله خاص
-app.get("/post/:id", (req, res) => {
-    const post = posts.find(p => p.id == req.params.id);
-    if (!post) return res.status(404).send("مقاله پیدا نشد!");
-    res.render("post", { title: post.title, post });
+// صفحه اصلی
+app.get('/', (req, res) => {
+    res.render('layout', { body: 'index' });
 });
 
 // صفحه درباره ما
-app.get("/about", (req, res) => {
-    res.render("about", { title: "درباره ما" });
+app.get('/about', (req, res) => {
+    res.render('layout', { body: 'about' });
 });
 
-// اجرای سرور
-const PORT = 3000;
-app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+// صفحه پست‌ها
+app.get('/post/:id', (req, res) => {
+    const posts = [
+        { id: 1, title: "پست اول", content: "محتوای پست اول" },
+        { id: 2, title: "پست دوم", content: "محتوای پست دوم" }
+    ];
+    
+    const post = posts.find(p => p.id == req.params.id);
+    
+    if (!post) {
+        return res.status(404).send("پست مورد نظر پیدا نشد.");
+    }
+
+    res.render('layout', { body: 'post', title: post.title, content: post.content });
+});
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});

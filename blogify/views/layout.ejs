@@ -1,25 +1,38 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="fa">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/style.css">
+    <title>Blogify</title>
+    <link rel="stylesheet" href="/public/style.css">
 </head>
+
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">صفحه اصلی</a></li>
-                <li><a href="/about">درباره ما</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <%- body %>
-    </main>
-    <footer>
-        <p>© 2025 Blogify - تمامی حقوق محفوظ است</p>
-    </footer>
+    <%- include('index.ejs') %>
 </body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogify</title>
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+
+<body>
+    <nav>
+        <a href="/">خانه</a>
+        <a href="/about">درباره ما</a>
+    </nav>
+
+    <main>
+        <%- include(body) %> <!-- اینجا محتوای هر صفحه قرار می‌گیرد -->
+    </main>
+</body>
+
 </html>
