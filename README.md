@@ -24,3 +24,7 @@
 
 <b><i>Swiper</i><br /></b>
 > Html / Css / Ts  / Swiper <br />
+
+<b><i>Blogify</i><br /></b>
+> EJS / CSS <br />
+
